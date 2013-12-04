@@ -1,27 +1,28 @@
 ﻿@model EmployeeMVC.Models.EmployeeModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
 <h2>Create</h2>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.LabelFor(x => x.Name)
     @Html.TextBoxFor(x => x.Name)
     @Html.ValidationMessageFor(x => x.Name)
-    
+
     @Html.LabelFor(x => x.HomeCity)
     @Html.TextBoxFor(x => x.HomeCity)
-    
+
     @Html.LabelFor(x => x.Department)
     @Html.TextBoxFor(x => x.Department)
-    
+
     @Html.LabelFor(x => x.Company)
     @Html.TextBoxFor(x => x.Company)
-    
+
     @Html.LabelFor(x => x.ManagerId)
-    @Html.DropDownList("ManagerId", new SelectList(Model.ListEmployees, "Id", "Name"));
-    
+    @Html.DropDownList("ManagerId", new SelectList(Model.ListEmployees, "Id", "Name"))
+
     <br />
-    <input type="submit" value="Create"/>
+    <input type="submit" value="Edit" />
 }

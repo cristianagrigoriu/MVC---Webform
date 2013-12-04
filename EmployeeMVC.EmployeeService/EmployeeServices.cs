@@ -18,9 +18,10 @@ namespace EmployeeMVC.EmployeeService
         public void createEmployees()
         {
             employees.Add(new Employee {Name = "John Lennon", Id = 1, HomeCity = "Hamburg", Department = "Guitar", Company = "Beatles", Manager = null});
-            employees.Add(new Employee{Name = "Paul McCartney", Id = 2, HomeCity = "Hamburg", Department = "Bass", Company = "Beatles", Manager = null});
+            employees.Add(new Employee{Name = "Paul McCartney", Id = 2, HomeCity = "Hamburg", Department = "Bass", Company = "Beatles", Manager = employees[0]});
             employees.Add(new Employee{Name = "Ringo Starr", Id = 3, HomeCity = "Liverpool", Department = "Drums", Company = "Beatles", Manager = null});
             employees.Add(new Employee{Name = "George Harrison", Id = 4, HomeCity = "Seattle", Department = "Guitar", Company = "Beatles", Manager = null});
+            employees.Add(new Employee { Name = "NULL", Id = 0, HomeCity = "", Department = "", Company = "", Manager = null });
         }
 
         public List<Employee> getAll()
@@ -32,5 +33,10 @@ namespace EmployeeMVC.EmployeeService
             }
             return HttpContext.Current.Session["list"] as List<Employee>;
         }
+
+        /*public IEnumerable<SelectListItem> getEmployeeNames()
+        {
+            IEnumerable<SelectList> selectList = SelectList();
+        }*/
     }
 }
