@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EmployeeMVC.Models;
+using PagedList;
 using EmployeeMVC.EmployeeService;
 using EmployeeMVC.Entities;
 
@@ -25,6 +26,8 @@ namespace EmployeeMVC.Controllers
         {
             List<Employee> currentEmpList = empService.getAll();
 
+            empService.getAllFromDB();
+
             //ViewBag.ListEmployees = currentEmpList;
             var model = new EmployeeModel();
             model.ListEmployees = currentEmpList;
@@ -45,10 +48,12 @@ namespace EmployeeMVC.Controllers
             return RedirectToAction("ViewList");
         }
 
-        public ActionResult ViewList()
+        public ActionResult ViewList(int? page)
         {
-            List<Employee> currentEmpList = empService.getAll();
+            //List<Employee> currentEmpList = empService.getAll();
             List<EmployeeModel> listModel = new List<EmployeeModel>();
+
+            List<Employee> currentEmpList = empService.getAllFromDB();
 
             /*Employee to EmployeeModel*/
             foreach (var item in currentEmpList)
@@ -73,7 +78,12 @@ namespace EmployeeMVC.Controllers
                     listModel.Add(empModel);
                 }
             }
-            return View(listModel);
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(listModel.ToPagedList(pageNumber, pageSize));
+
+            //return View(listModel);
         }
 
         public ActionResult Edit(long id)
