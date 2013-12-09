@@ -17,7 +17,7 @@
     @Html.TextBoxFor(x => x.Department)
     
     @Html.LabelFor(x => x.Company)
-    @Html.TextBoxFor(x => x.Company)
+    @Html.DropDownList("Company", new SelectList(Model.ListEmployees.g, "Name", "Name"));
     
     @Html.LabelFor(x => x.ManagerId)
     @Html.DropDownList("ManagerId", new SelectList(Model.ListEmployees, "Id", "Name"));

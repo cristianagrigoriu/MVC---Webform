@@ -7,6 +7,7 @@ using EmployeeMVC.Models;
 using PagedList;
 using EmployeeMVC.EmployeeService;
 using EmployeeMVC.Entities;
+using Mappings;
 
 namespace EmployeeMVC.Controllers
 {
@@ -17,46 +18,70 @@ namespace EmployeeMVC.Controllers
 
         private EmployeeServices empService = new EmployeeServices();
 
-        public ActionResult Index()
+        /*public ActionResult Create()
         {
-            return View();
-        }
+            //List<Employee> currentEmpList = empService.getAll();
 
-        public ActionResult Create()
-        {
-            List<Employee> currentEmpList = empService.getAll();
-
-            empService.getAllFromDB();
+            List<Employee> currentEmpList = empService.getAllFromDB();
 
             //ViewBag.ListEmployees = currentEmpList;
             var model = new EmployeeModel();
             model.ListEmployees = currentEmpList;
             return View(model);
-        }
+        }*/
 
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Create(EmployeeModel model)
         {
-            List<Employee> currentEmpList = empService.getAll();
+            //List<Employee> currentEmpList = empService.getAll();
+            List<Employee> currentEmpList = empService.getAllFromDB();
 
-            Employee newEmployee = new Employee { Name = model.Name, Id = currentEmpList.Max(x => x.Id) + 1, HomeCity = model.HomeCity, Department = model.Department, Company = model.Company, Manager = currentEmpList.Find(x => x.Id == model.ManagerId) };
+            /*Employee newEmployee = new Employee { Name = model.Name, Id = currentEmpList.Max(x => x.Id) + 1, HomeCity = model.HomeCity, Department = model.Department, Company = model.Company, Manager = currentEmpList.Find(x => x.Id == model.ManagerId) };
 
             currentEmpList.Add(newEmployee);
 
-            model.ListEmployees = currentEmpList;
+            model.ListEmployees = currentEmpList;*/
 
-            return RedirectToAction("ViewList");
+            //return RedirectToAction("ViewList");
+        //}
+
+        public ActionResult ViewCities(int? page)
+        {
+            //List<EmployeeModel> listModel = new List<EmployeeModel>();
+
+            List<Employee> listModel = empService.getAllNHibernate();
+
+
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(listModel.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult ViewList(int? page)
+        {
+            //List<EmployeeModel> listModel = new List<EmployeeModel>();
+
+            List<Employee> listModel = empService.getAllNHibernate();
+
+
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(listModel.ToPagedList(pageNumber, pageSize));
+        }
+
+        /*public ActionResult ViewList(int? page)
         {
             //List<Employee> currentEmpList = empService.getAll();
             List<EmployeeModel> listModel = new List<EmployeeModel>();
 
             List<Employee> currentEmpList = empService.getAllFromDB();
 
+            EmployeeMap eMap = new EmployeeMap();
+
             /*Employee to EmployeeModel*/
-            foreach (var item in currentEmpList)
+            /*foreach (var item in currentEmpList)
             {
                 if (item.Id != 0)
                 {
@@ -65,9 +90,9 @@ namespace EmployeeMVC.Controllers
                     empModel.Id = item.Id;
                     empModel.HomeCity = item.HomeCity;
                     empModel.Department = item.Department;
-                    empModel.Company = item.Company;
+                    empModel.Company = item.Company;*/
 
-                    /*we check if the employee has a manager and if its manager still exists in the list (we may have deleted it in the meantime)*/
+                    /*we check if the employee has a manager and if its manager still exists in the list (we may have deleted it in the meantime)
                     if (item.Manager != null && currentEmpList.Find(x => x.Id == item.Manager.Id) != null)
                     {
                         long mgrId = item.Manager.Id;
@@ -81,14 +106,15 @@ namespace EmployeeMVC.Controllers
 
             int pageSize = 5;
             int pageNumber = (page ?? 1);
-            return View(listModel.ToPagedList(pageNumber, pageSize));
+            return View(listModel.ToPagedList(pageNumber, pageSize));*/
 
             //return View(listModel);
-        }
+        //}
 
-        public ActionResult Edit(long id)
+        /*public ActionResult Edit(long id)
         {
-            List<Employee> currentEmpList = empService.getAll();
+            //List<Employee> currentEmpList = empService.getAll();
+            List<Employee> currentEmpList = empService.getAllFromDB();
             
             Employee selectedEmployee = currentEmpList.Find(x => x.Id == id);
 
@@ -96,7 +122,7 @@ namespace EmployeeMVC.Controllers
             model.ListEmployees = currentEmpList;
 
             /*to display current data on the selected employee*/
-            model.Name = selectedEmployee.Name;
+            /*model.Name = selectedEmployee.Name;
             model.HomeCity = selectedEmployee.HomeCity;
             model.Department = selectedEmployee.Department;
             model.Company = selectedEmployee.Company;
@@ -107,15 +133,16 @@ namespace EmployeeMVC.Controllers
             }
             return View(model);
     
-        }
+        }*/
 
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Edit(EmployeeModel model)
         {
-            List<Employee> currentEmpList = empService.getAll();
+            //List<Employee> currentEmpList = empService.getAll();
+            List<Employee> currentEmpList = empService.getAllFromDB();
 
             /*the old version of the contact*/
-            Employee selectedEmployee = currentEmpList.Find(x => x.Id == model.Id);
+            /*Employee selectedEmployee = currentEmpList.Find(x => x.Id == model.Id);
 
             selectedEmployee.Name = model.Name;
             selectedEmployee.HomeCity = model.HomeCity;
@@ -133,9 +160,9 @@ namespace EmployeeMVC.Controllers
             }
 
             return RedirectToAction("ViewList");
-        }
+        }*/
 
-        public ActionResult Delete(long id)
+        /*public ActionResult Delete(long id)
         {
             List<Employee> currentEmpList = empService.getAll();
 
@@ -144,7 +171,7 @@ namespace EmployeeMVC.Controllers
             currentEmpList.Remove(selectedEmployee);
 
             return RedirectToAction("ViewList");
-        }
+        }*/
 
     }
 }

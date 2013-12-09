@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeMVC.Entities
 {
-    public class Class1
+    public class City
     {
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
     }
 }
