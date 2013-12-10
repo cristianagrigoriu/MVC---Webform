@@ -47,9 +47,9 @@ namespace EmployeeMVC.Controllers
 
         public ActionResult ViewCities(int? page)
         {
-            //List<EmployeeModel> listModel = new List<EmployeeModel>();
+            List<EmployeeModel> listModel = new List<EmployeeModel>();
 
-            List<Employee> listModel = empService.getAllNHibernate();
+            //List<City> listModel = empService.getAllNHibernate();
 
 
 
@@ -61,10 +61,33 @@ namespace EmployeeMVC.Controllers
         public ActionResult ViewList(int? page)
         {
             //List<EmployeeModel> listModel = new List<EmployeeModel>();
+            List<Employee> employees = empService.getAllNHibernate();
 
-            List<Employee> listModel = empService.getAllNHibernate();
+            List<EmployeeModel> listModel = new List<EmployeeModel>();
 
+            /*Employee to EmployeeModel*/
+            foreach (var item in employees)
+            {
+                if (item.Id != 0)
+                {
+                    var empModel = new EmployeeModel();
+                    empModel.Name = item.FirstName + " " + item.LastName;
+                    empModel.Id = item.Id;
+                    empModel.HomeCity = item.HomeCity.Name;
+                    empModel.Department = item.Department.Name;
+                    empModel.Company = item.Company.Name;
 
+                    /*we check if the employee has a manager and if its manager still exists in the list (we may have deleted it in the meantime)*/
+                    if (item.Manager != null && employees.Find(x => x.Id == item.Manager.Id) != null)
+                    {
+                        long mgrId = item.Manager.Id;
+                        Employee mgr = employees.Find(x => x.Id == mgrId);
+                        empModel.ManagerName = mgr.FirstName + " " + mgr.LastName;
+                        empModel.ManagerId = mgr.Id;
+                    }
+                    listModel.Add(empModel);
+                }
+            }
 
             int pageSize = 5;
             int pageNumber = (page ?? 1);

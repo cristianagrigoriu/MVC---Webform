@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mappings", "Mappings\Mappin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SessionFactoryHelper", "SessionFactoryHelper\SessionFactoryHelper.csproj", "{C9C89578-9CED-4D46-A2F8-847440133235}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeMVC.Tests", "EmployeeMVC.Tests\EmployeeMVC.Tests.csproj", "{F78DD3E1-0DD3-4D1E-A0DE-A0A7194C97B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C9C89578-9CED-4D46-A2F8-847440133235}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9C89578-9CED-4D46-A2F8-847440133235}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9C89578-9CED-4D46-A2F8-847440133235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F78DD3E1-0DD3-4D1E-A0DE-A0A7194C97B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F78DD3E1-0DD3-4D1E-A0DE-A0A7194C97B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F78DD3E1-0DD3-4D1E-A0DE-A0A7194C97B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F78DD3E1-0DD3-4D1E-A0DE-A0A7194C97B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

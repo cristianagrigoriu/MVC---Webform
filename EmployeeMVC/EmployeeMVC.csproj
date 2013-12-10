@@ -209,6 +209,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
@@ -345,6 +346,10 @@
     <ProjectReference Include="..\Mappings\Mappings.csproj">
       <Project>{8ec4acaa-1d9e-4358-9317-1e283c91baa6}</Project>
       <Name>Mappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SessionFactoryHelper\SessionFactoryHelper.csproj">
+      <Project>{c9c89578-9ced-4d46-a2f8-847440133235}</Project>
+      <Name>SessionFactoryHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
